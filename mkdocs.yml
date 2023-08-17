@@ -1,0 +1,91 @@
+site_name: VK-Robot-Learning-ROS
+
+nav:
+  - 智能机器人技术应用:
+    - ROS基础: ROS基础.md
+    - ROS进阶: ROS进阶.md
+    - 建图与导航: 建图与导航.md
+
+theme:
+  name: material
+  language: zh
+  logo: assets/logo.png
+  favicon: assets/logo.png
+
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+      primary: blue
+      accent: light blue
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/toggle-switch-off-outline
+
+        name: Switch to light mode
+      primary: blue
+      accent: light blue
+
+  features:
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.footer
+    - navigation.indexes
+    - navigation.prune
+    - navigation.top
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate
+    - toc.follow
+
+plugins:
+  - search:
+      lang: 
+        - en
+
+copyright: Copyright &copy; 2023 VK-Robot
+
+extra:
+  consent:
+    title: Cookie consent
+    description: >- 
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+
+  social:
+    - icon: fontawesome/brands/mastodon 
+      link: http://www.vk-robot.com/
+      name: 官网
+
+markdown_extensions:
+  - tables
+  - abbr
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - md_in_html
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
