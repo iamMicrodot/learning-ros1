@@ -1,0 +1,1494 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../ROS%E8%BF%9B%E9%98%B6/">
+      
+      
+      <link rel="icon" href="../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21">
+    
+    
+      
+        <title>建图与导航 - VK-Robot-Learning-ROS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.eebd395e.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="light-blue">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#6-slam" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="VK-Robot-Learning-ROS" class="md-header__button md-logo" aria-label="VK-Robot-Learning-ROS" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VK-Robot-Learning-ROS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              建图与导航
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="light-blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VK-Robot-Learning-ROS" class="md-nav__button md-logo" aria-label="VK-Robot-Learning-ROS" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    VK-Robot-Learning-ROS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          智能机器人技术应用
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          智能机器人技术应用
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ROS%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        ROS基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ROS%E8%BF%9B%E9%98%B6/" class="md-nav__link">
+        ROS进阶
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          建图与导航
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        建图与导航
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    准备工作
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#61-slam" class="md-nav__link">
+    6.1 SLAM包的使用
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1 SLAM包的使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#611-gmapping" class="md-nav__link">
+    6.1.1 gmapping
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1.1 gmapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#6111-gmapping" class="md-nav__link">
+    6.1.1.1 gmapping功能包
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6112-gmapping" class="md-nav__link">
+    6.1.1.2 gmapping节点的配置
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#612-map_server" class="md-nav__link">
+    6.1.2 map_server
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    6.2  导航
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2 导航">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#621" class="md-nav__link">
+    6.2.1 自身定位
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2.1 自身定位">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#6211-amcl" class="md-nav__link">
+    6.2.1.1 amcl功能包
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6212-amcl" class="md-nav__link">
+    6.2.1.2 amcl节点的配置
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#622" class="md-nav__link">
+    6.2.2 路径规划
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2.2 路径规划">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#6221-move_base" class="md-nav__link">
+    6.2.2.1 move_base功能包
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6222" class="md-nav__link">
+    6.2.2.2 代价地图
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#623" class="md-nav__link">
+    6.2.3 实战：真实机器人导航配置与调试
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2.3 实战：真实机器人导航配置与调试">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    动态调参
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slam" class="md-nav__link">
+    练习——导航与SLAM建图
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    准备工作
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#61-slam" class="md-nav__link">
+    6.1 SLAM包的使用
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1 SLAM包的使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#611-gmapping" class="md-nav__link">
+    6.1.1 gmapping
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1.1 gmapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#6111-gmapping" class="md-nav__link">
+    6.1.1.1 gmapping功能包
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6112-gmapping" class="md-nav__link">
+    6.1.1.2 gmapping节点的配置
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#612-map_server" class="md-nav__link">
+    6.1.2 map_server
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    6.2  导航
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2 导航">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#621" class="md-nav__link">
+    6.2.1 自身定位
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2.1 自身定位">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#6211-amcl" class="md-nav__link">
+    6.2.1.1 amcl功能包
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6212-amcl" class="md-nav__link">
+    6.2.1.2 amcl节点的配置
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#622" class="md-nav__link">
+    6.2.2 路径规划
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2.2 路径规划">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#6221-move_base" class="md-nav__link">
+    6.2.2.1 move_base功能包
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6222" class="md-nav__link">
+    6.2.2.2 代价地图
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#623" class="md-nav__link">
+    6.2.3 实战：真实机器人导航配置与调试
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2.3 实战：真实机器人导航配置与调试">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    动态调参
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slam" class="md-nav__link">
+    练习——导航与SLAM建图
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="6-slam">6 移动机器人SLAM与导航</h1>
+<p>现实生活中，当我们需要到某目的地时，可能会需要一张全局地图，首先通过地图判断自己当前的位置，目的地的位置，同时根据地图来规划一条大致的路线。在前往目的地的途中，还需要判断周围的环境，例如当遇到修路等情况时，可能需要临时变更行进路线......</p>
+<p>对机器人的导航而言，也是如此，根据上述的情形我们可以提炼出导航需要的几个技术点：</p>
+<ol>
+<li>全局地图</li>
+<li>自身定位</li>
+<li>路径规划</li>
+<li>运动控制</li>
+<li>环境感知</li>
+</ol>
+<p>其中，全局地图的使用涉及地图的绘制，目前主流的地图绘制技术为SLAM（Simultaneous Localization And Mapping）——即时定位与地图构建，在ROS中，较为常用的SLAM算法有：gmapping、cartographer、hector_slam、rgbdslam、ORB_SLAM等，本教程选用gmapping算法来实现SLAM。</p>
+<h2 id="_1">准备工作</h2>
+<p>安装相关的ROS功能包：</p>
+<ul>
+<li>gmapping：<code>sudo apt install ros-melodic-gmapping</code></li>
+<li>map_server：<code>sudo apt install ros-melodic-map-server</code></li>
+<li>navigation：<code>sudo apt install ros-melodic-navigation</code></li>
+</ul>
+<p>新建功能包并导入依赖：</p>
+<p><code>catkin_create_pkg learning_nav gmapping map_server amcl move_base vkbot_description ydlidar vkbot_bringup vkbot_teleop</code></p>
+<h2 id="61-slam">6.1 SLAM包的使用</h2>
+<blockquote>
+<p><img alt="📹" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f4f9.svg" title=":video_camera:" />：<a href="https://www.bilibili.com/video/BV1FW4y1M7PV/?spm_id_from=333.788&amp;vd_source=1f2428248eaabe29886dcd01d3b9816a">什么是SLAM</a></p>
+</blockquote>
+<h3 id="611-gmapping">6.1.1 gmapping</h3>
+<p>gmapping是较为常用且成熟的SLAM算法之一，它可以根据机器人的里程计数据与激光雷达数据来绘制二维栅格地图，因此gmapping对硬件有一定的要求：</p>
+<ul>
+<li>机器人可以发布里程计消息</li>
+<li>机器人可以发布雷达消息</li>
+</ul>
+<h4 id="6111-gmapping">6.1.1.1 gmapping功能包</h4>
+<p>gmapping功能包中的核心节点是：<code>slam_gmapping</code>。关于该节点我们需要重点关注它订阅的话题、发布的话题、提供的服务以及相关参数</p>
+<p><img alt="image-20230525113213671" src=".\assets\image-20230525113213671.png" /></p>
+<p><strong>订阅的话题</strong></p>
+<ul>
+<li>scan (sensor_msgs/LaserScan)：SLAM所需的雷达数据</li>
+<li>tf (tf2_msgs/TFMessage)：用于底盘、里程计和雷达之间的坐标变换消息</li>
+</ul>
+<p><strong>发布的话题</strong></p>
+<ul>
+<li>map (nav_msgs/OccupancyGrid)：地图栅格数据，用于在rviz中显示地图</li>
+<li>map_metadata (nav_msgs/MapMetaData)：地图元数据，包含了地图的宽度、高度、分辨率等</li>
+<li>~entrop (std_msgs/Float64)：机器人姿态分布熵估计，值越大则不确定性越大</li>
+</ul>
+<p><strong>提供的服务</strong></p>
+<ul>
+<li>dynamic_map (nav_msgs/GetMap)：用于获取地图数据</li>
+</ul>
+<p><strong>参数</strong></p>
+<ul>
+<li>~base_frame (string, default: "base_link")：机器人基坐标系</li>
+<li>~map_frame (string, default: "map")：地图坐标系</li>
+<li>~odom_frame (string, default: "odom")：里程计坐标系</li>
+<li>~map_update_interval (float, default: 5.0)：地图更新频率</li>
+<li>~maxUrange (float, default: 80.0)：激光雷达数据最大可用范围，超出此范围的激光数据将被截断</li>
+<li>~maxRange(float)：传感器的最大范围，一般设置为 maxUrange &lt; 传感器实际探测的最大范围 &lt;= maxRange</li>
+</ul>
+<p>......</p>
+<blockquote>
+<p>参数较多，此处仅罗列出常用参数，其余参数可参考官网文档：<a href="http://wiki.ros.org/gmapping">gmapping - ROS Wiki</a></p>
+</blockquote>
+<p><strong>运行节点必须的坐标变换</strong></p>
+<ul>
+<li>激光雷达坐标系(scans) ---&gt; 基坐标系(base_link)：一般由robot_state_publisher发布，或 使用 tf 工具 static transform_publisher 发布</li>
+<li>基坐标系(base_link) ---&gt; 里程计坐标系(odom)：一般由里程计节点发布</li>
+</ul>
+<p><strong>节点发布的 TF 变换</strong></p>
+<ul>
+<li>地图坐标系(map) ---&gt; 里程计坐标系(odom)</li>
+</ul>
+<h4 id="6112-gmapping">6.1.1.2 gmapping节点的配置</h4>
+<p>使用 launch 文件启动节点并配置参数</p>
+<p><code>slam.launch</code></p>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">&lt;launch&gt;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;gmapping&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;slam_gmapping&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;slam_gmapping&quot;</span><span class="w"> </span><span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="cm">&lt;!--雷达话题--&gt;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="nt">&lt;remap</span><span class="w"> </span><span class="na">from=</span><span class="s">&quot;scan&quot;</span><span class="w"> </span><span class="na">to=</span><span class="s">&quot;scan&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="cm">&lt;!--底盘坐标系--&gt;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;base_frame&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;base_footprint&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="cm">&lt;!--里程计坐标系--&gt;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;odom_frame&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;odom&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="cm">&lt;!--地图更新频率，可以根据硬件条件适当调整，单位：s--&gt;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;map_update_interval&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1.0&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;maxUrange&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;8.0&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;maxRange&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;10.0&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;sigma&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.05&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;kernelSize&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;3&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;lstep&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.05&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;astep&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.05&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;iterations&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;5&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;lsigma&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.075&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ogain&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;3.0&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;lskip&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;minimumScore&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;30&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;srr&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.01&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;srt&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.02&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;str&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.01&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;stt&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.02&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;linearUpdate&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.05&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;angularUpdate&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.436&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;temporalUpdate&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;-1.0&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;resampleThreshold&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.5&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;particles&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;50&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;xmin&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;-1.0&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ymin&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;-1.0&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;xmax&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1.0&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ymax&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1.0&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;delta&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.05&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;llsamplerange&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.01&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;llsamplestep&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.01&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;lasamplerange&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.005&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;lasamplestep&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.005&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">    </span><span class="nt">&lt;/node&gt;</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="nt">&lt;/launch&gt;</span>
+</span></code></pre></div>
+<p><code>start_slam.launch</code></p>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">&lt;launch&gt;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find 功能包)/launch/slam.launch&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find vkbot_bringup)/launch/minimal.launch&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find ydlidar)/launch/ydlidar1_up.launch&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find vkbot_navigation)/launch/velocity_smoother.launch.xml&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find vkbot_navigation)/launch/safety_controller.launch.xml&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find vkbot_teleop)/launch/key_board_teleop.launch&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;joint_state_publisher&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;joint_state_publisher&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;joint_state_publisher&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;robot_state_publisher&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;robot_state_publisher&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;robot_state_publisher&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="cm">&lt;!-- 可以保存 rviz 配置并后期直接使用--&gt;</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;rviz&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;rviz&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;rviz&quot;</span><span class="w"> </span><span class="na">args=</span><span class="s">&quot;-d $(find 功能包)/config/slam.rviz&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="nt">&lt;/launch&gt;</span>
+</span></code></pre></div>
+<p><strong>rviz设置</strong></p>
+<figure>
+<p><img alt="image-20230627180449403" src=".\assets\image-20230627180449403.png" width="700" /></p>
+</figure>
+<ul>
+<li>设置Fixed Frame为map</li>
+<li>添加插件并订阅话题，包括：RobotModel、Map、LaserScan</li>
+</ul>
+<p>现在你可以试着用键盘控制设备移动，从而绘制地图啦！<img alt="✨" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2728.svg" title=":sparkles:" /></p>
+<h3 id="612-map_server">6.1.2 map_server</h3>
+<p><code>slam_gmapping</code>节点发布了地图数据，但是数据仅仅保存在内存中，当节点关闭时地图数据也会被一并释放，因此我们需要将地图数据保存到磁盘中便于后续的使用，map_server 功能包提供了两个节点：<code>map_saver</code> 和 <code>map_server</code>，前者用于地图保存，后者用于加载地图数据到 ROS 参数服务器中</p>
+<ul>
+<li><code>map_saver</code>：此节点订阅了 map 话题，用于生成地图文件</li>
+</ul>
+<p>使用launch文件启动此节点并配置参数</p>
+<p><code>map_saver.launch</code></p>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">&lt;launch&gt;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;filename&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;$(find 功能包)/保存路径/my_map&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;map_server&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;map_saver&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;map_saver&quot;</span><span class="w"> </span><span class="na">args=</span><span class="s">&quot;-f $(arg filename)&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nt">&lt;/launch&gt;</span>
+</span></code></pre></div>
+<blockquote>
+<p><code>slam_gmapping</code>节点地图绘制完成后，运行此 launch 文件即可保存地图，指定路径下会生成两个文件：<code>my_map.pgm</code> 及 <code>my_map.yaml</code>，<code>.pgm</code>是一张地图的图片，可用图片查看程序打开，<code>.yaml</code>中保存的是地图的描述信息，包括地图宽度、高度、分辨率等</p>
+</blockquote>
+<ul>
+<li><code>map_server</code>：此节点会发布地图数据</li>
+</ul>
+<p>使用launch文件启动此节点，加载地图描述文件（yaml）并发布</p>
+<p><code>map_server.launch</code></p>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">&lt;launch&gt;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="cm">&lt;!-- 地图描述文件(yaml) --&gt;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;map&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;my_map.yaml&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="cm">&lt;!-- 运行map_server节点并加载地图 --&gt;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;map_server&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;map_server&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;map_server&quot;</span><span class="w"> </span><span class="na">args=</span><span class="s">&quot;$(find 功能包)/保存路径/$(arg map)&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;rviz&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;rviz&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;rviz&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nt">&lt;/launch&gt;</span>
+</span></code></pre></div>
+<blockquote>
+<p>在 rviz 中加载 map 组件，订阅 /map 话题即可显示二维栅格地图</p>
+</blockquote>
+<figure>
+<p><img alt="image-20230628135341149" src=".\assets\image-20230628135341149.png" width="700" /></p>
+</figure>
+<h2 id="62">6.2  导航</h2>
+<figure>
+<p><img alt="nav_comic.png" src="http://wiki.ros.org/navigation?action=AttachFile&amp;do=get&amp;target=nav_comic.png" /></p>
+</figure>
+<p>机器人是如何实现导航的呢？ROS官方提供了一张导航功能包集的图示，下图中囊括了ROS导航涉及的关键技术</p>
+<figure>
+<p><img alt="" src=".\assets/%E5%9B%BE%E7%89%874.png" width="700" /></p>
+</figure>
+<p>上图各部分含义如下：</p>
+<ul>
+<li>白色部分：必须且已实现的组件</li>
+<li>灰色部分：可选且已实现的组件</li>
+<li>蓝色部分：必须但未实现的组件</li>
+</ul>
+<p>根据图示可总结出导航涉及的关键技术有以下五点：</p>
+<ol>
+<li>全局地图</li>
+<li>自身定位</li>
+<li>路径规划</li>
+<li>运动控制</li>
+<li>环境感知</li>
+</ol>
+<p>其中，全局地图一般通过<code>map_server</code>节点发布SLAM构建好的地图信息，在6.1中已详细介绍，运动控制与环境感知为机器人平台已实现功能。因此接下来重点介绍<strong>自身定位</strong>与<strong>路径规划</strong>。</p>
+<h3 id="621">6.2.1 自身定位</h3>
+<p>在导航开始与执行过程中，机器人都需要确定当前自身的位置，例如SLAM就可以实现自身定位，除此之外，ROS官方还提供了一个用于定位的功能包：amcl</p>
+<p>AMCL（Adaptive Monte Carlo Localization）自适应蒙塔卡罗定位，是用于2D移动机器人的概率定位系统，amcl已经集成到了navigation包中。</p>
+<h4 id="6211-amcl">6.2.1.1 amcl功能包</h4>
+<p>amcl功能包中的核心节点是：<code>amcl</code>。为了方便调用，需要先了解该节点订阅与发布的话题、提供的服务及相关参数。</p>
+<p><img alt="image-20230626174234644" src=".\assets\image-20230626174234644.png" /></p>
+<p><strong>订阅的话题</strong></p>
+<ul>
+<li>initialpose(geometry_msgs/PoseWithCovarianceStamped)：用来初始化粒子滤波器的均值和协方差</li>
+<li>scan(sensor_msgs/LaserScan)：激光雷达数据</li>
+<li>tf(tf2_msgs/TFMessage)：坐标变换消息</li>
+<li>map(nav_msgs/OccupancyGrid)：设置<code>use_map_topic</code>参数后，AMCL将订阅此话题以检索用于定位的地图</li>
+</ul>
+<p><strong>发布的话题</strong></p>
+<ul>
+<li>amcl_pose(geometry_msgs/PoseWithCovarianceStamped)：机器人在地图中的位姿估计</li>
+<li>particlecloud(geometry_msgs/PoseArray)：位姿估计集合，rviz中可以使用PoseArray插件图形化显示</li>
+<li>tf(tf2_msgs/TFMessage)：odom到map的坐标变换消息</li>
+</ul>
+<p><strong>提供的服务</strong></p>
+<ul>
+<li>global_localization(std_srvs/Empty)：初始化全局定位</li>
+<li>request_nomotion_update(std_srvs/Empty)：手动执行更新和发布更新粒子的服务</li>
+<li>set_map(nav_msgs/SetMap)：手动设置新地图和姿态的服务</li>
+</ul>
+<p><strong>调用的服务</strong></p>
+<ul>
+<li>static_map(nav_msgs/GetMap)：调用此服务获取地图数据</li>
+</ul>
+<p><strong>参数</strong></p>
+<ul>
+<li>~base_frame_id(string, default:"base_link")：机器人基坐标系</li>
+<li>
+<p>~odom_frame_id(string, default:"odom")：里程计坐标系</p>
+</li>
+<li>
+<p>~odom_model_type(string, default:"diff")：里程计模型，"diff"-&gt;差速、"omni"-&gt;全向轮、"diff-corrected"、"omni-corrected"</p>
+</li>
+<li>~global_frame_id(string, default:"map")：地图坐标系</li>
+</ul>
+<blockquote>
+<p>以上为常用参数，其余参数参考：<a href="http://wiki.ros.org/amcl">amcl - ROS Wiki</a></p>
+</blockquote>
+<p><strong>坐标变换</strong></p>
+<p>里程计本身也可以协助机器人进行定位，不过里程计存在累计误差，会出现定位错误的情况，amcl可以通过估算机器人在地图坐标系下的姿态，再结合里程计定位从而提高定位的精确度。</p>
+<figure>
+<p><img alt="amcl_localization.png" src="http://wiki.ros.org/amcl?action=AttachFile&amp;do=get&amp;target=amcl_localization.png" width="700" /></p>
+</figure>
+<h4 id="6212-amcl">6.2.1.2 amcl节点的配置</h4>
+<p>使用 launch 文件启动节点并配置参数</p>
+<p><code>amcl.launch</code></p>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">&lt;launch&gt;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;amcl&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;amcl&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;amcl&quot;</span><span class="w"> </span><span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">        </span><span class="cm">&lt;!-- 里程计模式为差分 --&gt;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;odom_model_type&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;diff&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="cm">&lt;!-- 里程计坐标系 --&gt;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;odom_frame_id&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;odom&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span><span class="cm">&lt;!-- 机器人基坐标系 --&gt;</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;base_frame_id&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;base_footprint&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">        </span><span class="cm">&lt;!-- 地图坐标系 --&gt;</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;global_frame_id&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;map&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">        </span><span class="cm">&lt;!-- Publish scans from best pose at a max of 10 Hz --&gt;</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;odom_alpha5&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.1&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;gui_publish_rate&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;10.0&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;laser_max_beams&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;60&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;laser_max_range&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;12.0&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;min_particles&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;500&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;max_particles&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;2000&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;kld_err&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.05&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;kld_z&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.99&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;odom_alpha1&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.2&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;odom_alpha2&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.2&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">        </span><span class="cm">&lt;!-- translation std dev, m --&gt;</span>
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;odom_alpha3&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.2&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;odom_alpha4&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.2&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;laser_z_hit&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.5&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;laser_z_short&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.05&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;laser_z_max&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.05&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;laser_z_rand&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.5&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;laser_sigma_hit&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.2&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;laser_lambda_short&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.1&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;laser_model_type&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;likelihood_field&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;laser_likelihood_max_dist&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;2.0&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;update_min_d&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.25&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;update_min_a&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.2&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;resample_interval&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;transform_tolerance&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1.0&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;recovery_alpha_slow&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.0&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a><span class="w">        </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;recovery_alpha_fast&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.0&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-40"><a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a><span class="w">    </span><span class="nt">&lt;/node&gt;</span>
+</span><span id="__span-4-41"><a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a><span class="nt">&lt;/launch&gt;</span>
+</span></code></pre></div>
+<p>amcl节点不能独立运行，需先加载全局地图，再启动rviz显示定位结果，以上步骤可集成到launch文件中</p>
+<p><code>start_amcl.launch</code></p>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">&lt;launch&gt;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="cm">&lt;!-- 设置地图的配置文件 --&gt;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;map&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;my_map.yaml&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="cm">&lt;!-- 运行地图服务器，并且加载设置的地图--&gt;</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;map_server&quot;</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;map_server&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;map_server&quot;</span><span class="w"> </span><span class="na">args=</span><span class="s">&quot;$(find 功能包名)/保存路径/$(arg map)&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="cm">&lt;!-- 启动AMCL节点 --&gt;</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find 功能包名)/保存路径/amcl.launch&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find vkbot_bringup)/launch/minimal.launch&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find ydlidar)/launch/ydlidar1_up.launch&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find vkbot_navigation)/launch/velocity_smoother.launch.xml&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">    </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find vkbot_navigation)/launch/safety_controller.launch.xml&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">    </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find vkbot_teleop)/launch/key_board_teleop.launch&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">    </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;joint_state_publisher&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;joint_state_publisher&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;joint_state_publisher&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">    </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;robot_state_publisher&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;robot_state_publisher&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;robot_state_publisher&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">    </span><span class="cm">&lt;!-- 可以保存 rviz 配置并后期直接使用--&gt;</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">    </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;rviz&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;rviz&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;rviz&quot;</span><span class="w"> </span><span class="na">args=</span><span class="s">&quot;-d $(find 功能包)/config/amcl.rviz&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="nt">&lt;/launch&gt;</span>
+</span></code></pre></div>
+<blockquote>
+<p>launch文件中地图服务节点和amcl节点中的包名、文件名需要根据自己的设置修改</p>
+</blockquote>
+<p>在启动的 rviz 中，添加RobotModel、Map插件，分别显示机器人模型与地图，添加 PoseArray 插件，设置话题为<code>particlecloud</code>来显示 amcl 预估的当前机器人位姿，箭头越是密集，说明当前机器人处于此位置的概率越高。通过键盘控制机器人运动，会发现 PoseArray 也随之而改变</p>
+<h3 id="622">6.2.2 路径规划</h3>
+<p>路径规划是导航中的核心功能之一，在ROS的导航功能包集navigation中提供了move_base功能包，用于实现路径规划功能。</p>
+<h4 id="6221-move_base">6.2.2.1 move_base功能包</h4>
+<p>move_base功能包的核心节点是：<code>move_base</code>。为了方便调用，需要先了解该节点的相关内容。</p>
+<p><img alt="image-20230627104516081" src=".\assets\image-20230627104516081.png" /></p>
+<p><strong>动作（Action）订阅的话题</strong></p>
+<ul>
+<li>move_base/goal(move_base_msgs/MoveBaseActionGoal)：move_base运动规划目标</li>
+<li>move_base/cancel(actionlib_msgs/GoalID)：取消目标</li>
+</ul>
+<p><strong>动作（Action）发布的话题</strong></p>
+<ul>
+<li>move_base/feedback(move_base_msgs/MoveBaseActionFeedback)：连续反馈信息，包含机器人的基坐标系在当前世界坐标系中的位置</li>
+<li>move_base/status(actionlib_msgs/GoalStatusArray)：提供有关发送到move_base的目标状态信息</li>
+<li>move_base/result(move_base_msgs/MoveBaseActionResult)：move_base操作的结果为空</li>
+</ul>
+<p><strong>订阅的话题</strong></p>
+<ul>
+<li>move_base_simple/goal(geometry_msgs/PoseStamped)：运动规划目标（无连续反馈）</li>
+</ul>
+<p><strong>发布的话题</strong></p>
+<ul>
+<li>cmd_vel(geometry_msgs/Twist)：输出到机器人底盘的运动控制消息</li>
+</ul>
+<p><strong>服务</strong></p>
+<ul>
+<li>~make_plan(nav_msgs/GetPlan)：请求该服务，可以获取到给定目标的规划路径，但是不执行该路径规划</li>
+<li>~clear_unknown_space(std_srvs/Empty)：清除机器人周围的未知空间</li>
+<li>~clear_costmaps(std_srvs/Empty)：清除代价地图中的障碍物，可能会导致机器人与障碍物发生碰撞，慎用</li>
+</ul>
+<p><strong>参数</strong></p>
+<p><img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/26a0.svg" title=":warning:" />：请参考<a href="http://wiki.ros.org/move_base">move_base - ROS Wiki</a></p>
+<h4 id="6222">6.2.2.2 代价地图</h4>
+<p><strong>概念</strong></p>
+<p>机器人导航是依赖于地图的，地图在SLAM时已经介绍，但SLAM所构建的地图在导航中是不能直接使用的，因为：</p>
+<ul>
+<li>SLAM构建的地图是静态的，在导航过程中障碍物信息是可变的，因此导航过程中需要实时获取障碍物信息</li>
+<li>在靠近障碍物边缘时，虽然此时还未发生碰撞，但是由于机器人本体存在惯性或形体不规则的情况，转弯时还是有可能与障碍物产生碰撞的，安全起见最好在障碍物的边缘设置膨胀区域，尽可能避免机器人进入此区域</li>
+</ul>
+<p>因此，导航时需要在静态地图的基础上增加辅助信息：实时更新障碍物信息、基于静态地图设置膨胀区，三者共同构成了<strong>代价地图</strong></p>
+<p><strong>代价地图组成</strong></p>
+<p>代价地图分为：global_costmap（全局代价地图）和local_costmap（本地代价地图），前者用于全局路径规划，后者用于本地路径规划（动态避障）。一张代价地图包含以下层级：</p>
+<ul>
+<li>Static Map Layer：静态地图层，由SLAM构建的静态地图</li>
+<li>Obstacle Map Layer：障碍物层，由传感器动态感知的障碍物信息</li>
+<li>Inflation Layer：膨胀层，在以上两层地图上进行膨胀，以避免机器人与障碍物碰撞</li>
+<li>Other Layers：其余自定义的costmap</li>
+</ul>
+<blockquote>
+<p>多个层可以按需自由搭配</p>
+</blockquote>
+<p><strong>碰撞算法</strong></p>
+<p>在ROS中是如何计算代价值的呢，官方给出了下图辅助理解：</p>
+<p><img alt="" src="D:\工作文档\培训\2023（6.20·6.24）年第一期暑期智能机器人技术应用师资研修班\assert\costmapspec.png" /></p>
+<blockquote>
+<p>横轴表示距离机器人中心的距离，纵轴表示代价地图中栅格的灰度值</p>
+</blockquote>
+<ul>
+<li>致命障碍：栅格值为254，此时障碍物与机器人中心重叠，必然产生碰撞</li>
+<li>内切障碍：栅格值为253，此时障碍物处于机器人的内切圆中，必然产生碰撞</li>
+<li>外切障碍：栅格值为[128, 252]，此时障碍物处于机器人的外切圆与内切圆之间，处于碰撞临界状态，可能产生碰撞</li>
+<li>非自由空间：栅格值为(0, 127]，此时机器人处于障碍物附近，属于危险警戒区域，机器人进入此区域，将来可能会产生碰撞</li>
+<li>自由空间：栅格值为0，此处机器人可自由通行</li>
+<li>未知区域：栅格值为255，表示还未探明是否有障碍物的区域</li>
+</ul>
+<blockquote>
+<p>设置膨胀层时可参考非自由空间</p>
+</blockquote>
+<p><strong>导航参数配置</strong></p>
+<p>使用launch文件启动move_base节点，并加载参数配置文件</p>
+<p><code>move_base.launch</code></p>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">&lt;launch&gt;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;move_base&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;move_base&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;move_base&quot;</span><span class="w"> </span><span class="na">respawn=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="w"> </span><span class="na">clear_params=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">        </span><span class="nt">&lt;rosparam</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find 功能包名)/param/move_base_params.yaml&quot;</span><span class="w"> </span><span class="na">command=</span><span class="s">&quot;load&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">        </span><span class="nt">&lt;rosparam</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find 功能包名)/param/costmap_common_params.yaml&quot;</span><span class="w"> </span><span class="na">command=</span><span class="s">&quot;load&quot;</span><span class="w"> </span><span class="na">ns=</span><span class="s">&quot;global_costmap&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">        </span><span class="nt">&lt;rosparam</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find 功能包名)/param/costmap_common_params.yaml&quot;</span><span class="w"> </span><span class="na">command=</span><span class="s">&quot;load&quot;</span><span class="w"> </span><span class="na">ns=</span><span class="s">&quot;local_costmap&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">        </span><span class="nt">&lt;rosparam</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find 功能包名)/param/global_costmap_params.yaml&quot;</span><span class="w"> </span><span class="na">command=</span><span class="s">&quot;load&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">        </span><span class="nt">&lt;rosparam</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find 功能包名)/param/local_costmap_params.yaml&quot;</span><span class="w"> </span><span class="na">command=</span><span class="s">&quot;load&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">        </span><span class="nt">&lt;rosparam</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find 功能包名)/param/base_global_planner_params.yaml&quot;</span><span class="w"> </span><span class="na">command=</span><span class="s">&quot;load&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">        </span><span class="nt">&lt;rosparam</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find 功能包名)/param/teb_local_planner_params.yaml&quot;</span><span class="w"> </span><span class="na">command=</span><span class="s">&quot;load&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">        </span><span class="nt">&lt;remap</span><span class="w"> </span><span class="na">from=</span><span class="s">&quot;cmd_vel&quot;</span><span class="w"> </span><span class="na">to=</span><span class="s">&quot;/cmd_vel_mux/input/navi&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="nt">&lt;/node&gt;</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="nt">&lt;/launch&gt;</span>
+</span></code></pre></div>
+<blockquote>
+<p>这个launch文件启动了move_base节点，"respawn"设置为true表示此节点关闭后会被重启，"clear_params"设置为true表示每次启动此节点都需要清空私有参数并重新载入</p>
+</blockquote>
+<p><strong>配置文件</strong></p>
+<ol>
+<li><code>move_base_params.yaml</code>：move_base节点配置参数</li>
+</ol>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">shutdown_costmaps</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nt">controller_frequency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.0</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nt">controller_patience</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0</span><span class="w"> </span><span class="c1"># 3.0</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="nt">planner_frequency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="nt">planner_patience</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="nt">oscillation_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.0</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="nt">oscillation_distance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.2</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="c1"># Planner selection</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="nt">base_global_planner</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;global_planner/GlobalPlanner&quot;</span><span class="w">  </span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="nt">base_local_planner</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;teb_local_planner/TebLocalPlannerROS&quot;</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="nt">max_planning_retries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="nt">recovery_behavior_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="nt">clearing_rotation_allowed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="nt">useMagnetometer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="nt">auto_update_</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="nt">particle_range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="nt">angle_tolerance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.05</span>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="nt">recovery_behaviors</span><span class="p">:</span>
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="w"> </span><span class="c1">#- name: &#39;conservative_reset&#39;</span>
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="w">  </span><span class="c1">#  type: &#39;clear_costmap_recovery/ClearCostmapRecovery&#39;</span>
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;aggressive_reset&#39;</span>
+</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;clear_costmap_recovery/ClearCostmapRecovery&#39;</span>
+</span><span id="__span-7-31"><a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a><span class="w">  </span><span class="c1">#- name: &#39;super_reset&#39;</span>
+</span><span id="__span-7-32"><a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a><span class="w">   </span><span class="c1"># type: &#39;clear_costmap_recovery/ClearCostmapRecovery&#39;</span>
+</span><span id="__span-7-33"><a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;clearing_rotation&#39;</span>
+</span><span id="__span-7-34"><a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;rotate_recovery/RotateRecovery&#39;</span>
+</span><span id="__span-7-35"><a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a><span class="w">  </span><span class="c1">#- name: &#39;move_slow_and_clear&#39;</span>
+</span><span id="__span-7-36"><a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a><span class="w">    </span><span class="c1">#type: &#39;move_slow_and_clear/MoveSlowAndClear&#39;</span>
+</span><span id="__span-7-37"><a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a>
+</span><span id="__span-7-38"><a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a><span class="nt">conservative_reset</span><span class="p">:</span>
+</span><span id="__span-7-39"><a id="__codelineno-7-39" name="__codelineno-7-39" href="#__codelineno-7-39"></a><span class="w">  </span><span class="nt">reset_distance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0</span>
+</span><span id="__span-7-40"><a id="__codelineno-7-40" name="__codelineno-7-40" href="#__codelineno-7-40"></a><span class="w">  </span><span class="c1">#layer_names: [static_layer, obstacle_layer, inflation_layer]</span>
+</span><span id="__span-7-41"><a id="__codelineno-7-41" name="__codelineno-7-41" href="#__codelineno-7-41"></a><span class="w">  </span><span class="nt">layer_names</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">obstacle_layer</span><span class="p p-Indicator">]</span>
+</span><span id="__span-7-42"><a id="__codelineno-7-42" name="__codelineno-7-42" href="#__codelineno-7-42"></a>
+</span><span id="__span-7-43"><a id="__codelineno-7-43" name="__codelineno-7-43" href="#__codelineno-7-43"></a><span class="nt">aggressive_reset</span><span class="p">:</span>
+</span><span id="__span-7-44"><a id="__codelineno-7-44" name="__codelineno-7-44" href="#__codelineno-7-44"></a><span class="w">  </span><span class="nt">reset_distance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.3</span>
+</span><span id="__span-7-45"><a id="__codelineno-7-45" name="__codelineno-7-45" href="#__codelineno-7-45"></a><span class="w">  </span><span class="c1">#layer_names: [static_layer, obstacle_layer, inflation_layer]</span>
+</span><span id="__span-7-46"><a id="__codelineno-7-46" name="__codelineno-7-46" href="#__codelineno-7-46"></a><span class="w">  </span><span class="nt">layer_names</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">obstacle_layer</span><span class="p p-Indicator">]</span>
+</span><span id="__span-7-47"><a id="__codelineno-7-47" name="__codelineno-7-47" href="#__codelineno-7-47"></a>
+</span><span id="__span-7-48"><a id="__codelineno-7-48" name="__codelineno-7-48" href="#__codelineno-7-48"></a><span class="nt">super_reset</span><span class="p">:</span>
+</span><span id="__span-7-49"><a id="__codelineno-7-49" name="__codelineno-7-49" href="#__codelineno-7-49"></a><span class="w">  </span><span class="nt">reset_distance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.0</span>
+</span><span id="__span-7-50"><a id="__codelineno-7-50" name="__codelineno-7-50" href="#__codelineno-7-50"></a><span class="w">  </span><span class="c1">#layer_names: [static_layer, obstacle_layer, inflation_layer]</span>
+</span><span id="__span-7-51"><a id="__codelineno-7-51" name="__codelineno-7-51" href="#__codelineno-7-51"></a><span class="w">  </span><span class="nt">layer_names</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">obstacle_layer</span><span class="p p-Indicator">]</span>
+</span><span id="__span-7-52"><a id="__codelineno-7-52" name="__codelineno-7-52" href="#__codelineno-7-52"></a>
+</span><span id="__span-7-53"><a id="__codelineno-7-53" name="__codelineno-7-53" href="#__codelineno-7-53"></a><span class="nt">move_slow_and_clear</span><span class="p">:</span>
+</span><span id="__span-7-54"><a id="__codelineno-7-54" name="__codelineno-7-54" href="#__codelineno-7-54"></a><span class="w">  </span><span class="nt">clearing_distance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+</span><span id="__span-7-55"><a id="__codelineno-7-55" name="__codelineno-7-55" href="#__codelineno-7-55"></a><span class="w">  </span><span class="nt">limited_trans_speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+</span><span id="__span-7-56"><a id="__codelineno-7-56" name="__codelineno-7-56" href="#__codelineno-7-56"></a><span class="w">  </span><span class="nt">limited_rot_speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.4</span>
+</span><span id="__span-7-57"><a id="__codelineno-7-57" name="__codelineno-7-57" href="#__codelineno-7-57"></a><span class="w">  </span><span class="nt">limited_distance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.3</span>
+</span></code></pre></div>
+<ol>
+<li><code>costmap_common_params.yaml</code>：全局代价地图与本地代价地图的通用参数</li>
+</ol>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">robot_radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.23</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nt">obstacle_layer</span><span class="p">:</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w"> </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w"> </span><span class="nt">max_obstacle_height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.6</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w"> </span><span class="nt">min_obstacle_height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w"> </span><span class="nt">obstacle_range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w"> </span><span class="nt">raytrace_range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.0</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w"> </span><span class="nt">inflation_radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.25</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w"> </span><span class="nt">combination_method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w"> </span><span class="nt">observation_sources</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">laser_scan_sensor</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w"> </span><span class="nt">track_unknown_space</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w"> </span><span class="nt">laser_scan_sensor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="nv">LaserScan</span><span class="p p-Indicator">,</span><span class="nt"> topic</span><span class="p">:</span><span class="w"> </span><span class="nv">/scan</span><span class="p p-Indicator">,</span><span class="nt"> marking</span><span class="p">:</span><span class="w"> </span><span class="nv">true</span><span class="p p-Indicator">,</span><span class="nt"> clearing</span><span class="p">:</span><span class="w"> </span><span class="nv">true</span><span class="p p-Indicator">,</span><span class="nt"> expected_update_rate</span><span class="p">:</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">}</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="nt">track_unknown_space</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="nt">inflation_layer</span><span class="p">:</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">  </span><span class="nt">cost_scaling_factor</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">10.0</span><span class="w">  </span><span class="c1"># exponential rate at which the obstacle cost drops off (default: 10)</span>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">  </span><span class="c1"># inflation_radius:     0.25 # max. distance from an obstacle at which costs are incurred for planning paths.</span>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="nt">static_layer</span><span class="p">:</span>
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">  </span><span class="nt">map_topic</span><span class="p">:</span><span class="w">            </span><span class="s">&quot;/map&quot;</span>
+</span></code></pre></div>
+<ol>
+<li><code>global_costmap_params.yaml</code>：全局代价地图参数</li>
+</ol>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">global_costmap</span><span class="p">:</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">   </span><span class="nt">global_frame</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/map</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">   </span><span class="nt">robot_base_frame</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/base_footprint</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">   </span><span class="nt">update_frequency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">   </span><span class="nt">publish_frequency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">   </span><span class="nt">static_map</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">   </span><span class="nt">rolling_window</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">   </span><span class="nt">resolution</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.05</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">   </span><span class="nt">transform_tolerance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">   </span><span class="nt">map_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">costmap</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">   </span><span class="nt">inflation_radius</span><span class="p">:</span><span class="w">     </span><span class="l l-Scalar l-Scalar-Plain">0.3</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="nt">GlobalPlanner</span><span class="p">:</span><span class="w">        </span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">   </span><span class="nt">allow_unknown</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span>
+</span></code></pre></div>
+<ol>
+<li><code>local_costmap_params.yaml</code>：本地代价地图参数</li>
+</ol>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">local_costmap</span><span class="p">:</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>   <span class="n">global_frame</span><span class="p">:</span> <span class="o">/</span><span class="n">odom_combined</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>   <span class="n">robot_base_frame</span><span class="p">:</span> <span class="o">/</span><span class="n">base_footprint</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>   <span class="n">update_frequency</span><span class="p">:</span> <span class="mf">5.0</span>   <span class="c1">#3.0</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>   <span class="n">publish_frequency</span><span class="p">:</span> <span class="mf">2.0</span>  <span class="c1">#1.0</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>   <span class="n">static_map</span><span class="p">:</span> <span class="n">false</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>   <span class="n">rolling_window</span><span class="p">:</span> <span class="n">true</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>   <span class="n">width</span><span class="p">:</span> <span class="mf">3.0</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>   <span class="n">height</span><span class="p">:</span> <span class="mf">3.0</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>   <span class="n">resolution</span><span class="p">:</span> <span class="mf">0.05</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>   <span class="n">transform_tolerance</span><span class="p">:</span> <span class="mf">1.0</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>   <span class="n">map_type</span><span class="p">:</span> <span class="n">costmap</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>   <span class="n">inflation_radius</span><span class="p">:</span>     <span class="mf">0.25</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>   <span class="n">plugins</span><span class="p">:</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>   <span class="o">-</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">static_layer</span><span class="p">,</span>        <span class="nb">type</span><span class="p">:</span> <span class="s2">&quot;costmap_2d::StaticLayer&quot;</span><span class="p">}</span>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>   <span class="o">-</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">obstacle_layer</span><span class="p">,</span>      <span class="nb">type</span><span class="p">:</span> <span class="s2">&quot;costmap_2d::ObstacleLayer&quot;</span><span class="p">}</span>
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>   <span class="o">-</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">inflation_layer</span><span class="p">,</span> <span class="nb">type</span><span class="p">:</span> <span class="s1">&#39;costmap_2d::InflationLayer&#39;</span><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li><code>base_global_planner_params</code>：全局路径规划器参数配置</li>
+</ol>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nt">GlobalPlanner</span><span class="p">:</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span><span class="nt">old_navfn_behavior</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span><span class="nt">use_quadratic</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span><span class="nt">use_dijkstra</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span><span class="nt">use_grid_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">  </span><span class="nt">allow_unknown</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">  </span><span class="nt">planner_window_x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">  </span><span class="nt">planner_window_y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">  </span><span class="nt">default_tolerance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span><span class="w">  </span>
+</span></code></pre></div>
+<ol>
+<li><code>teb_local_planner_params.yaml</code>：局部路径规划器参数配置</li>
+</ol>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">TebLocalPlannerROS</span><span class="p">:</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w"> </span><span class="nt">odom_topic</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">odom</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w"> </span><span class="nt">map_frame</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/odom</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w"> </span><span class="c1"># Trajectory</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w"> </span><span class="nt">teb_autosize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w"> </span><span class="nt">dt_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.45</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w"> </span><span class="nt">dt_hysteresis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w"> </span><span class="nt">global_plan_overwrite_orientation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="w"> </span><span class="nt">max_global_plan_lookahead_dist</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="w"> </span><span class="nt">feasibility_check_no_poses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="w"> </span><span class="c1"># Robot</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="w"> </span><span class="nt">max_vel_x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.4</span>
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="w"> </span><span class="nt">max_vel_x_backwards</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.15</span>
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="w"> </span><span class="nt">max_vel_theta</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a><span class="w"> </span><span class="nt">acc_lim_x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.3</span>
+</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a><span class="w"> </span><span class="nt">acc_lim_theta</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.3</span>
+</span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a><span class="w"> </span><span class="nt">min_turning_radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-12-23"><a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a><span class="w"> </span><span class="nt">footprint_model</span><span class="p">:</span><span class="w"> </span><span class="c1"># types: &quot;point&quot;, &quot;circular&quot;, &quot;two_circles&quot;, &quot;line&quot;, &quot;polygon&quot;</span>
+</span><span id="__span-12-24"><a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a><span class="w">   </span><span class="nt">radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.23</span><span class="w"> </span><span class="c1"># for type &quot;circular&quot;</span>
+</span><span id="__span-12-25"><a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a>
+</span><span id="__span-12-26"><a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a><span class="w"> </span><span class="c1"># GoalTolerance</span>
+</span><span id="__span-12-27"><a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a>
+</span><span id="__span-12-28"><a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a><span class="w"> </span><span class="nt">xy_goal_tolerance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.10</span>
+</span><span id="__span-12-29"><a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a><span class="w"> </span><span class="nt">yaw_goal_tolerance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.2</span>
+</span><span id="__span-12-30"><a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a><span class="w"> </span><span class="nt">free_goal_vel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+</span><span id="__span-12-31"><a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a>
+</span><span id="__span-12-32"><a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a><span class="w"> </span><span class="c1"># Obstacles</span>
+</span><span id="__span-12-33"><a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a>
+</span><span id="__span-12-34"><a id="__codelineno-12-34" name="__codelineno-12-34" href="#__codelineno-12-34"></a><span class="w"> </span><span class="nt">min_obstacle_dist</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.3</span>
+</span><span id="__span-12-35"><a id="__codelineno-12-35" name="__codelineno-12-35" href="#__codelineno-12-35"></a><span class="w"> </span><span class="nt">include_costmap_obstacles</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-12-36"><a id="__codelineno-12-36" name="__codelineno-12-36" href="#__codelineno-12-36"></a><span class="w"> </span><span class="nt">costmap_obstacles_behind_robot_dist</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</span><span id="__span-12-37"><a id="__codelineno-12-37" name="__codelineno-12-37" href="#__codelineno-12-37"></a><span class="w"> </span><span class="nt">obstacle_poses_affected</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7</span>
+</span><span id="__span-12-38"><a id="__codelineno-12-38" name="__codelineno-12-38" href="#__codelineno-12-38"></a><span class="w"> </span><span class="nt">costmap_converter_plugin</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+</span><span id="__span-12-39"><a id="__codelineno-12-39" name="__codelineno-12-39" href="#__codelineno-12-39"></a><span class="w"> </span><span class="nt">costmap_converter_spin_thread</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-12-40"><a id="__codelineno-12-40" name="__codelineno-12-40" href="#__codelineno-12-40"></a><span class="w"> </span><span class="nt">costmap_converter_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+</span><span id="__span-12-41"><a id="__codelineno-12-41" name="__codelineno-12-41" href="#__codelineno-12-41"></a>
+</span><span id="__span-12-42"><a id="__codelineno-12-42" name="__codelineno-12-42" href="#__codelineno-12-42"></a><span class="w"> </span><span class="c1"># Optimization</span>
+</span><span id="__span-12-43"><a id="__codelineno-12-43" name="__codelineno-12-43" href="#__codelineno-12-43"></a>
+</span><span id="__span-12-44"><a id="__codelineno-12-44" name="__codelineno-12-44" href="#__codelineno-12-44"></a><span class="w"> </span><span class="nt">no_inner_iterations</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+</span><span id="__span-12-45"><a id="__codelineno-12-45" name="__codelineno-12-45" href="#__codelineno-12-45"></a><span class="w"> </span><span class="nt">no_outer_iterations</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+</span><span id="__span-12-46"><a id="__codelineno-12-46" name="__codelineno-12-46" href="#__codelineno-12-46"></a><span class="w"> </span><span class="nt">optimization_activate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-12-47"><a id="__codelineno-12-47" name="__codelineno-12-47" href="#__codelineno-12-47"></a><span class="w"> </span><span class="nt">optimization_verbose</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+</span><span id="__span-12-48"><a id="__codelineno-12-48" name="__codelineno-12-48" href="#__codelineno-12-48"></a><span class="w"> </span><span class="nt">penalty_epsilon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+</span><span id="__span-12-49"><a id="__codelineno-12-49" name="__codelineno-12-49" href="#__codelineno-12-49"></a><span class="w"> </span><span class="nt">weight_max_vel_x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</span><span id="__span-12-50"><a id="__codelineno-12-50" name="__codelineno-12-50" href="#__codelineno-12-50"></a><span class="w"> </span><span class="nt">weight_max_vel_theta</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-12-51"><a id="__codelineno-12-51" name="__codelineno-12-51" href="#__codelineno-12-51"></a><span class="w"> </span><span class="nt">weight_acc_lim_x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-12-52"><a id="__codelineno-12-52" name="__codelineno-12-52" href="#__codelineno-12-52"></a><span class="w"> </span><span class="nt">weight_acc_lim_theta</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-12-53"><a id="__codelineno-12-53" name="__codelineno-12-53" href="#__codelineno-12-53"></a><span class="w"> </span><span class="nt">weight_kinematics_nh</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+</span><span id="__span-12-54"><a id="__codelineno-12-54" name="__codelineno-12-54" href="#__codelineno-12-54"></a><span class="w"> </span><span class="nt">weight_kinematics_forward_drive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">70</span>
+</span><span id="__span-12-55"><a id="__codelineno-12-55" name="__codelineno-12-55" href="#__codelineno-12-55"></a><span class="w"> </span><span class="nt">weight_kinematics_turning_radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-12-56"><a id="__codelineno-12-56" name="__codelineno-12-56" href="#__codelineno-12-56"></a><span class="w"> </span><span class="nt">weight_optimaltime</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-12-57"><a id="__codelineno-12-57" name="__codelineno-12-57" href="#__codelineno-12-57"></a><span class="w"> </span><span class="nt">weight_obstacle</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50</span>
+</span><span id="__span-12-58"><a id="__codelineno-12-58" name="__codelineno-12-58" href="#__codelineno-12-58"></a><span class="w"> </span><span class="nt">weight_dynamic_obstacle</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w"> </span><span class="c1"># not in use yet</span>
+</span><span id="__span-12-59"><a id="__codelineno-12-59" name="__codelineno-12-59" href="#__codelineno-12-59"></a><span class="w"> </span><span class="nt">selection_alternative_time_cost</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span><span class="w"> </span><span class="c1"># not in use yet</span>
+</span><span id="__span-12-60"><a id="__codelineno-12-60" name="__codelineno-12-60" href="#__codelineno-12-60"></a>
+</span><span id="__span-12-61"><a id="__codelineno-12-61" name="__codelineno-12-61" href="#__codelineno-12-61"></a><span class="w"> </span><span class="c1"># Homotopy Class Planner</span>
+</span><span id="__span-12-62"><a id="__codelineno-12-62" name="__codelineno-12-62" href="#__codelineno-12-62"></a>
+</span><span id="__span-12-63"><a id="__codelineno-12-63" name="__codelineno-12-63" href="#__codelineno-12-63"></a><span class="w"> </span><span class="nt">enable_homotopy_class_planning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+</span><span id="__span-12-64"><a id="__codelineno-12-64" name="__codelineno-12-64" href="#__codelineno-12-64"></a><span class="w"> </span><span class="nt">enable_multithreading</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-12-65"><a id="__codelineno-12-65" name="__codelineno-12-65" href="#__codelineno-12-65"></a><span class="w"> </span><span class="nt">simple_exploration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+</span><span id="__span-12-66"><a id="__codelineno-12-66" name="__codelineno-12-66" href="#__codelineno-12-66"></a><span class="w"> </span><span class="nt">max_number_classes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+</span><span id="__span-12-67"><a id="__codelineno-12-67" name="__codelineno-12-67" href="#__codelineno-12-67"></a><span class="w"> </span><span class="nt">roadmap_graph_no_samples</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span>
+</span><span id="__span-12-68"><a id="__codelineno-12-68" name="__codelineno-12-68" href="#__codelineno-12-68"></a><span class="w"> </span><span class="nt">roadmap_graph_area_width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+</span><span id="__span-12-69"><a id="__codelineno-12-69" name="__codelineno-12-69" href="#__codelineno-12-69"></a><span class="w"> </span><span class="nt">h_signature_prescaler</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+</span><span id="__span-12-70"><a id="__codelineno-12-70" name="__codelineno-12-70" href="#__codelineno-12-70"></a><span class="w"> </span><span class="nt">h_signature_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+</span><span id="__span-12-71"><a id="__codelineno-12-71" name="__codelineno-12-71" href="#__codelineno-12-71"></a><span class="w"> </span><span class="nt">obstacle_keypoint_offset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+</span><span id="__span-12-72"><a id="__codelineno-12-72" name="__codelineno-12-72" href="#__codelineno-12-72"></a><span class="w"> </span><span class="nt">obstacle_heading_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.45</span>
+</span><span id="__span-12-73"><a id="__codelineno-12-73" name="__codelineno-12-73" href="#__codelineno-12-73"></a><span class="w"> </span><span class="nt">visualize_hc_graph</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+</span></code></pre></div>
+<h3 id="623">6.2.3 实战：真实机器人导航配置与调试</h3>
+<p>要实现导航，需要集成地图服务、amcl、move_base与rviz等节点：</p>
+<p><code>navigation.launch</code></p>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nt">&lt;launch&gt;</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="cm">&lt;!-- 设置地图的配置文件 --&gt;</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;map&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;my_map.yaml&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="cm">&lt;!-- 运行地图服务器，并且加载设置的地图--&gt;</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">    </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;map_server&quot;</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;map_server&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;map_server&quot;</span><span class="w"> </span><span class="na">args=</span><span class="s">&quot;$(find 功能包)/map/$(arg map)&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">    </span><span class="cm">&lt;!-- 启动AMCL节点 --&gt;</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">    </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find 功能包)/launch/amcl.launch&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">    </span><span class="cm">&lt;!-- 运行move_base节点 --&gt;</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">    </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find 功能包)/launch/move_base.launch&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">    </span><span class="cm">&lt;!-- 运行rviz --&gt;</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">    </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;rviz&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;rviz&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;rviz&quot;</span><span class="w"> </span><span class="na">args=</span><span class="s">&quot;-d $(find 功能包)/rviz/nav.rviz&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">    </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find vkbot_bringup)/launch/minimal.launch&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="w">    </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find ydlidar)/launch/ydlidar1_up.launch&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="w">    </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find vkbot_navigation)/launch/velocity_smoother.launch.xml&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="w">    </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find vkbot_navigation)/launch/safety_controller.launch.xml&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="w">    </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;joint_state_publisher&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;joint_state_publisher&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;joint_state_publisher&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="w">    </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;robot_state_publisher&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;robot_state_publisher&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;robot_state_publisher&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="nt">&lt;/launch&gt;</span>
+</span></code></pre></div>
+<p><strong>运行</strong></p>
+<ol>
+<li>
+<p>添加RVIZ插件（可保存配置，后期直接复用）</p>
+</li>
+<li>
+<p>RobotModel：用于显示机器人模型</p>
+</li>
+<li>
+<p>Map：用于显示地图、全局代价地图以及本地代价地图，代价地图的配置如下图：</p>
+</li>
+</ol>
+<figure>
+<p><img alt="image-20230628154131284" src=".\assets\image-20230628154131284.png" /></p>
+</figure>
+<ul>
+<li>PoseArray：用于显示AMCL位姿估计集合</li>
+<li>Path：用于显示全局规划路径与本地规划路径，配置如下图：</li>
+</ul>
+<figure>
+<p><img alt="image-20230628154307243" src=".\assets\image-20230628154307243.png" /></p>
+</figure>
+<ol>
+<li>通过RVIZ工具栏的2D Nav Goal设置导航目标</li>
+</ol>
+<h4 id="_2">动态调参</h4>
+<p>参数服务器的数据被修改时，如果节点不重新访问，那么就不能获取修改后的数据，例如在修改小海龟仿真器背景颜色的案例中，需要调用<code>/clear</code>服务才能刷新背景颜色。而在一些特殊场景下，要求能做到动态获取参数，如导航参数的动态调试。</p>
+<p>在ROS中针对这种场景已经给出了解决方案：<code>dynamic_reconfigure</code>动态参数配置。使用以下命令即可启动：</p>
+<p><code>rosrun rqt_reconfigure rqt_reconfigure</code></p>
+<h2 id="slam">练习——导航与SLAM建图</h2>
+<p>在介绍SLAM建图时，我们是通过键盘控制机器人移动实现建图的，而后续又介绍了机器人的自主导航，那么能不能将两者结合，实现机器人的自主移动并构建地图呢？</p>
+<p>答案是<strong>可以的</strong>。并且实现过程较为简单，只需要通过launch文件集成SLAM与move_base节点，即可实现上述功能。</p>
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+        
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../ROS%E8%BF%9B%E9%98%B6/" class="md-footer__link md-footer__link--prev" aria-label="上一页: ROS进阶" rel="prev">
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                ROS进阶
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 VK-Robot
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+    
+    
+    
+    <a href="http://www.vk-robot.com/" target="_blank" rel="noopener me" title="官网" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M433 179.11c0-97.2-63.71-125.7-63.71-125.7-62.52-28.7-228.56-28.4-290.48 0 0 0-63.72 28.5-63.72 125.7 0 115.7-6.6 259.4 105.63 289.1 40.51 10.7 75.32 13 103.33 11.4 50.81-2.8 79.32-18.1 79.32-18.1l-1.7-36.9s-36.31 11.4-77.12 10.1c-40.41-1.4-83-4.4-89.63-54a102.54 102.54 0 0 1-.9-13.9c85.63 20.9 158.65 9.1 178.75 6.7 56.12-6.7 105-41.3 111.23-72.9 9.8-49.8 9-121.5 9-121.5zm-75.12 125.2h-46.63v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.33V197c0-58.5-64-56.6-64-6.9v114.2H90.19c0-122.1-5.2-147.9 18.41-175 25.9-28.9 79.82-30.8 103.83 6.1l11.6 19.5 11.6-19.5c24.11-37.1 78.12-34.8 103.83-6.1 23.71 27.3 18.4 53 18.4 175z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">同意</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">管理设定</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.path", "navigation.footer", "navigation.indexes", "navigation.prune", "navigation.top", "content.code.copy", "content.code.select", "content.code.annotate", "toc.follow"], "search": "../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+    
+  </body>
+</html>
