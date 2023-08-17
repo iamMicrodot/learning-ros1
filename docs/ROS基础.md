@@ -14,7 +14,7 @@ Linux不仅系统性能稳定，而且是开源软件。其核心防火墙组件
 Linux具有开放源码、没有版权、技术社区用户多等特点，开放源码使得用户可以自由裁剪，灵活性高，功能强大，成本低。尤其系统中内嵌网络协议栈，经过适当的配置就可实现路由器的功能。这些特点使得Linux成为开发路由交换设备的理想开发平台。
 
 <figure markdown>
-  ![Linux Logo](D:\工作文档\培训\智能机器人技术应用师资研修班\docs\learning-ros1\docs\assets\b8389b504fc2d562853535047a5b87ef76c6a6efc68d.png){ width="300" }
+  ![Linux Logo](.\assets\b8389b504fc2d562853535047a5b87ef76c6a6efc68d.png){ width="300" }
 </figure>
 
 
@@ -23,11 +23,11 @@ Linux具有开放源码、没有版权、技术社区用户多等特点，开放
 <figure markdown>
 | Method      | Description                          |
 | :-----------: | :------------------------------------: |
-| `debian`       | ![Debian](docs\assets\image-20230424171302822.png){width="200"}  |
-| `redhat`       | ![Redhat](docs\assets\image-20230424171322588.png){width="200"} |
-| `gentoo`    | ![Gentoo](docs\assets\image-20230424171332108.png){width="200"} |
-| `fedora`    | ![Fedora](docs\assets\image-20230424171359014.png){width="200"} |
-| `ubuntu`    | ![Ubuntu](docs\assets\image-20230424171405444.png){width="200"} |
+| `debian`       | ![Debian](.\assets\image-20230424171302822.png){width="200"}  |
+| `redhat`       | ![Redhat](.\assets\image-20230424171322588.png){width="200"} |
+| `gentoo`    | ![Gentoo](.\assets\image-20230424171332108.png){width="200"} |
+| `fedora`    | ![Fedora](.\assets\image-20230424171359014.png){width="200"} |
+| `ubuntu`    | ![Ubuntu](.\assets\image-20230424171405444.png){width="200"} |
 </figure>
 
 
@@ -41,7 +41,7 @@ Linux具有开放源码、没有版权、技术社区用户多等特点，开放
 访问官网，下载安装包，官网下载地址：[VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
 <figure markdown>
-  ![](docs\assets\image-20230516165231428.png){ width="700" }
+  ![](.\assets\image-20230516165231428.png){ width="700" }
 </figure>
 
 
@@ -52,13 +52,13 @@ virtualbox 安装比较简单，双击下载好的安装文件，一直 "下一�
 **3.添加虚拟机**
 
 <figure markdown>
-  ![](docs\assets\image-20230516165633426.png){ width="700" }
+  ![](.\assets\image-20230516165633426.png){ width="700" }
 
-  ![](docs\assets\image-20230516165744287.png){ width="700" }
+  ![](.\assets\image-20230516165744287.png){ width="700" }
 
-  ![](docs\assets\image-20230516165852698.png){ width="700" }
+  ![](.\assets\image-20230516165852698.png){ width="700" }
 
-  ![](docs\assets\image-20230516165957373.png){ width="700" }
+  ![](.\assets\image-20230516165957373.png){ width="700" }
 </figure>
 
 
@@ -66,40 +66,40 @@ virtualbox 安装比较简单，双击下载好的安装文件，一直 "下一�
 ### 1.3.2 添加Ubuntu镜像
 
 <figure markdown>
-  ![](docs\assets\image-20230516170617623.png){ width="700" }
+  ![](.\assets\image-20230516170617623.png){ width="700" }
 
-  ![](docs\assets\image-20230516170721434.png){ width="700" }
+  ![](.\assets\image-20230516170721434.png){ width="700" }
 
-  ![](docs\assets\image-20230516170827858.png){ width="700" }
+  ![](.\assets\image-20230516170827858.png){ width="700" }
 
-  ![](docs\assets\image-20230516171030755.png){ width="700" }
+  ![](.\assets\image-20230516171030755.png){ width="700" }
 </figure>
 
 > 镜像下载地址：[ubuntu-releases-18.04.6安装包下载_开源镜像站-阿里云 (aliyun.com)](http://mirrors.aliyun.com/ubuntu-releases/18.04.6/?spm=a2c6h.25603864.0.0.53c74dda4JflW2) —— ubuntu-18.04.6-desktop-amd64.iso
 
 <figure markdown>
-  ![](docs\assets\image-20230516171319848.png){ width="700" }
+  ![](.\assets\image-20230516171319848.png){ width="700" }
 </figure>
 
 
 ### 1.3.3 安装Ubuntu
 
 <figure markdown>
-  ![](docs\assets\image-20230517084734274.png){ width="700" }
+  ![](.\assets\image-20230517084734274.png){ width="700" }
 
-  ![](docs\assets\image-20230517084739432.png){ width="700" }
+  ![](.\assets\image-20230517084739432.png){ width="700" }
 
-  ![](docs\assets\image-20230517084745515.png){ width="700" }
+  ![](.\assets\image-20230517084745515.png){ width="700" }
 
-  ![](docs\assets\image-20230517084751588.png){ width="700" }
+  ![](.\assets\image-20230517084751588.png){ width="700" }
 
-  ![](docs\assets\image-20230517084801193.png){ width="700" }
+  ![](.\assets\image-20230517084801193.png){ width="700" }
 
-  ![](docs\assets\image-20230517084806250.png){ width="700" }
+  ![](.\assets\image-20230517084806250.png){ width="700" }
 
-  ![](docs\assets\image-20230517084812700.png){ width="700" }
+  ![](.\assets\image-20230517084812700.png){ width="700" }
 
-  ![](docs\assets\image-20230517084830076.png){ width="700" }
+  ![](.\assets\image-20230517084830076.png){ width="700" }
 </figure>
 
 
@@ -117,7 +117,7 @@ Linux的操作大部分都是直接执行命令，没有便利的可视化操作
 
 Linux的文件系统是采用级层式的树状目录结构，在此结构中的最上层是根目录“/”，然后在此目录下再创建其他的目录。在Linux世界里，一切皆文件。
 
-![Linux目录结构](docs\assets\Linux目录结构.png)
+![Linux目录结构](.\assets\Linux目录结构.png)
 
 * **root**：该目录为系统管理员目录，root是具有超级权限的用户
 * **bin** ：存放系统预装的二进制（binary）可执行程序，这里存放的可执行文件可以在系统的任何目录下执行
@@ -235,13 +235,13 @@ Change the mode of each FILE to MODE.
 ROS (Robot Operating System, 机器人操作系统) 提供一系列程序库和工具以帮助软件开发者创建机器人应用软件。它提供了硬件抽象、设备驱动、函数库、可视化工具、消息传递和软件包管理等诸多功能。ROS遵循BSD开源许可协议。
 
 <figure markdown>
-  ![](http://www.autolabor.com.cn/book/ROSTutorials/docs\assets/13_%E5%89%8D%E8%A8%80.png)
+  ![](http://www.autolabor.com.cn/book/ROSTutorials/.\assets/13_%E5%89%8D%E8%A8%80.png)
 </figure>
 
 ROS设计者将ROS表述为“ROS = Plumbing + Tools + Capabilities + Ecosystem”，即ROS是通讯机制、工具软件包、机器人高层技能以及机器人生态系统的集合体
 
 <figure markdown>
-  ![](docs\assets/%E5%9B%BE%E7%89%871.png)
+  ![](.\assets/%E5%9B%BE%E7%89%871.png)
 </figure>
 
 
@@ -252,11 +252,11 @@ ROS设计者将ROS表述为“ROS = Plumbing + Tools + Capabilities + Ecosystem�
 <figure markdown>
 |     ROS版本名称      |                             LOGO                             |  发布时间  | 支持的操作系统 |
 | :--------------------: | :----------------------------------------------------------: | :--------: | :------------: |
-| ROS Noetic Ninjemys  | ![](docs\assets\noetic.png){width="200"} | 2020/05/23 |  Ubuntu 20.04  |
-| ROS Melodic Morenia  | ![](docs\assets\melodic.jpg){width="200"} | 2018/05/23 |  Ubuntu 18.04  |
-| ROS Lunar Loggerhead | ![](docs\assets\lunar.png){width="200"} | 2017/05/23 |  Ubuntu 16.04  |
-|   ROS Kinetic Kame   | ![](docs\assets\kinetic.png){width="200"} | 2016/05/23 |  Ubuntu 15.10  |
-|   ROS Jade Turtle    | ![](docs\assets\jade.png){width="200"} | 2015/05/23 |  Ubuntu 14.04  |
+| ROS Noetic Ninjemys  | ![](.\assets\noetic.png){width="200"} | 2020/05/23 |  Ubuntu 20.04  |
+| ROS Melodic Morenia  | ![](.\assets\melodic.jpg){width="200"} | 2018/05/23 |  Ubuntu 18.04  |
+| ROS Lunar Loggerhead | ![](.\assets\lunar.png){width="200"} | 2017/05/23 |  Ubuntu 16.04  |
+|   ROS Kinetic Kame   | ![](.\assets\kinetic.png){width="200"} | 2016/05/23 |  Ubuntu 15.10  |
+|   ROS Jade Turtle    | ![](.\assets\jade.png){width="200"} | 2015/05/23 |  Ubuntu 14.04  |
 |        ......        |                            ......                            |   ......   |     ......     |
 </figure>
 
@@ -267,7 +267,7 @@ ROS设计者将ROS表述为“ROS = Plumbing + Tools + Capabilities + Ecosystem�
 
 
 <figure markdown>
-  ![](docs\assets\image-20230518180247219.png){ width="500" }
+  ![](.\assets\image-20230518180247219.png){ width="500" }
 </figure>
 
 
@@ -456,7 +456,7 @@ vkrobot@vkrobot：~$ rosrun turtlesim turtlesim_node
 
 
 <figure markdown>
-  ![turtlesim](docs\assets\turtlesim.png)
+  ![turtlesim](.\assets\turtlesim.png)
 </figure>
 
 > **注意**：此处的乌龟可能和你turtlesim窗口上的不同。
@@ -493,7 +493,7 @@ Use arrow keys to move the turtle.
 > 现在你可以使用键盘上的方向键来控制turtle运动了。如果不能控制，请选中turtle_teleop_key的终端窗口以确保按键输入能够被捕获。
 
 <figure markdown>
-  ![turtle_key](docs\assets\turtle_key.png)
+  ![turtle_key](.\assets\turtle_key.png)
 </figure>
 
 打开一个新终端：
@@ -505,7 +505,7 @@ vkrobot@vkrobot：~$ rqt_graph
 你会看到一个窗口：
 
 <figure markdown>
-  ![rqt_graph_turtle_key2](docs\assets\rqt_graph_turtle_key2.png){width="600"}
+  ![rqt_graph_turtle_key2](.\assets\rqt_graph_turtle_key2.png){width="600"}
 </figure>
 
 
@@ -1009,7 +1009,7 @@ vkrobot@vkrobot：~/catkin_ws$ echo $ROS_PACKAGE_PATH  #检查环境变量
 vscode 下载：[Visual Studio Code Download](https://code.visualstudio.com/download)
 
 <figure markdown>
-  ![image-20230516180239078](docs\assets\image-20230516180239078.png)
+  ![image-20230516180239078](.\assets\image-20230516180239078.png)
 </figure>
 
 **2.安装**
@@ -1019,7 +1019,7 @@ vscode 下载：[Visual Studio Code Download](https://code.visualstudio.com/down
 **3.安装插件**
 
 <figure markdown>
-  ![image-20230516180124455](docs\assets\image-20230516180124455.png)
+  ![image-20230516180124455](.\assets\image-20230516180124455.png)
 </figure>
 
 
@@ -1027,7 +1027,7 @@ vscode 下载：[Visual Studio Code Download](https://code.visualstudio.com/down
 
 
 <figure markdown>
-  ![image-20230425152553540](docs\assets\image-20230425152553540.png){width="600"}
+  ![image-20230425152553540](.\assets\image-20230425152553540.png){width="600"}
 </figure>
 
 
