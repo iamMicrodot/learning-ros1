@@ -14,7 +14,7 @@ Linux不仅系统性能稳定，而且是开源软件。其核心防火墙组件
 Linux具有开放源码、没有版权、技术社区用户多等特点，开放源码使得用户可以自由裁剪，灵活性高，功能强大，成本低。尤其系统中内嵌网络协议栈，经过适当的配置就可实现路由器的功能。这些特点使得Linux成为开发路由交换设备的理想开发平台。
 
 <figure markdown>
-  ![Linux Logo](docs\assets\b8389b504fc2d562853535047a5b87ef76c6a6efc68d.png){ width="300" }
+  ![Linux Logo](D:\工作文档\培训\智能机器人技术应用师资研修班\docs\learning-ros1\docs\assets\b8389b504fc2d562853535047a5b87ef76c6a6efc68d.png){ width="300" }
 </figure>
 
 
