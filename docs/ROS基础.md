@@ -252,11 +252,11 @@ ROS设计者将ROS表述为“ROS = Plumbing + Tools + Capabilities + Ecosystem�
 <figure markdown>
 |     ROS版本名称      |                             LOGO                             |  发布时间  | 支持的操作系统 |
 | :--------------------: | :----------------------------------------------------------: | :--------: | :------------: |
-| ROS Noetic Ninjemys  | <img src="assets\noetic.png" alt="noetic" style="zoom:50%;" /> | 2020/05/23 |  Ubuntu 20.04  |
-| ROS Melodic Morenia  | <img src="assets\melodic.jpg" alt="melodic" style="zoom:11%;" /> | 2018/05/23 |  Ubuntu 18.04  |
-| ROS Lunar Loggerhead | <img src="assets\lunar.png" alt="lunar" style="zoom:4%;" /> | 2017/05/23 |  Ubuntu 16.04  |
-|   ROS Kinetic Kame   | <img src="assets\kinetic.png" alt="kinetic" style="zoom:5%;" /> | 2016/05/23 |  Ubuntu 15.10  |
-|   ROS Jade Turtle    | <img src="assets\jade.png" alt="jade" style="zoom:6%;" /> | 2015/05/23 |  Ubuntu 14.04  |
+| ROS Noetic Ninjemys  | ![](assets\noetic.png){width="200"} | 2020/05/23 |  Ubuntu 20.04  |
+| ROS Melodic Morenia  | ![](assets\melodic.jpg){width="200"} | 2018/05/23 |  Ubuntu 18.04  |
+| ROS Lunar Loggerhead | ![](assets\lunar.png){width="200"} | 2017/05/23 |  Ubuntu 16.04  |
+|   ROS Kinetic Kame   | ![](assets\kinetic.png){width="200"} | 2016/05/23 |  Ubuntu 15.10  |
+|   ROS Jade Turtle    | ![](assets\jade.png){width="200"} | 2015/05/23 |  Ubuntu 14.04  |
 |        ......        |                            ......                            |   ......   |     ......     |
 </figure>
 
