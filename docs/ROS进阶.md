@@ -116,11 +116,11 @@ hide:
 ## 3.2 TF坐标变换
 
 <figure markdown>
-![tf-pr2](assets\tf-pr2.png){width="400"}
+![tf-pr2](.\assets\tf-pr2.png){width="400"}
 </figure>
 
 <figure markdown>
-![tf](assets\tf.png){width="600"}
+![tf](.\assets\tf.png){width="600"}
 </figure>
 
 
@@ -415,7 +415,7 @@ RVIZ是一款三维可视化软件，针对基于ROS软件框架的机器人平�
 ### 3.4.2 RVIZ数据可视化
 
 <figure markdown>
-![](assets\image-20230522134306851.png){width="700"}
+![](.\assets\image-20230522134306851.png){width="700"}
 </figure>
 
 RVIZ中的UI界面分为以下几类：
@@ -438,7 +438,7 @@ Gazebo是一款功能强大的三维物理仿真平台，具有以下特点：
 - 开源免费
 
 <figure markdown>
-![image-20230522135803961](assets\image-20230522135803961.png){width="700"}
+![image-20230522135803961](.\assets\image-20230522135803961.png){width="700"}
 </figure>
 
 ### 3.5.2 构建仿真环境
@@ -455,7 +455,7 @@ Gazebo中创建仿真环境有两种方式：
 1. 启动Gazebo并添加组件
 
 <figure markdown>
-![image-20230522162806255](assets\image-20230522162806255.png){width="700"}
+![image-20230522162806255](.\assets\image-20230522162806255.png){width="700"}
 </figure>
 
 
@@ -464,7 +464,7 @@ Gazebo中创建仿真环境有两种方式：
 选择 "File" --> "Save World As"，选择保存路径（功能包路径下创建worlds目录），文件后缀为 .world
 
 <figure markdown>
-![image-20230522162930858](assets\image-20230522162930858.png){width="700"}
+![image-20230522162930858](.\assets\image-20230522162930858.png){width="700"}
 </figure>
 
 
@@ -488,11 +488,11 @@ Gazebo中创建仿真环境有两种方式：
 1. 启动Gazebo进入“Edit” --> "Building Editor"模式，绘制仿真环境
 
 <figure markdown>
-![image-20230522163458307](assets\image-20230522163458307.png){width="700"}
+![image-20230522163458307](.\assets\image-20230522163458307.png){width="700"}
 </figure>
 
 <figure markdown>
-![image-20230522163656306](assets\image-20230522163656306.png){width="700"}
+![image-20230522163656306](.\assets\image-20230522163656306.png){width="700"}
 </figure>
 
 保存仿真环境与启动方式同上
@@ -526,7 +526,7 @@ URDF（Unified Robot Description Format）——统一机器人描述格式，�
 2. `<link>`：连杆标签，用于描述机器人刚体部分的外观和物理属性，如机器人底盘，轮子，摄像头，激光雷达等
 
 <figure markdown>
-![img](assets/%E5%9B%BE%E7%89%872.png)
+![img](.\assets/%E5%9B%BE%E7%89%872.png)
 </figure>
 
 属性：
@@ -607,7 +607,7 @@ URDF（Unified Robot Description Format）——统一机器人描述格式，�
 3. `<joint>`：关节标签，用于描述两个刚体间的连接关系
 
 <figure markdown>
-![img](assets/%E5%9B%BE%E7%89%873.png)
+![img](.\assets/%E5%9B%BE%E7%89%873.png)
 </figure>
 
 属性：
@@ -1672,7 +1672,7 @@ vkrobot@vkrobot:~/catkin_ws/src$ touch learning_urdf/urdf/laser.urdf.xacro
 
 
 <figure markdown>
-![](assets\产品图.png){width="500"}
+![](.\assets\产品图.png){width="500"}
 </figure>
 
 
@@ -1681,7 +1681,7 @@ vkrobot@vkrobot:~/catkin_ws/src$ touch learning_urdf/urdf/laser.urdf.xacro
 机器人是一套机电一体化的设备，角度不同，对机器人组成的认识也会有明显差异，从控制的角度来看，机器人系统可以分为四大部分，即执行机构、驱动系统、传感系统和控制系统。各部分之间的控制关系如下图：
 
 <figure markdown>
-![](assets\机器人四大组成部分之间的控制关系.png){width="700"}
+![](.\assets\机器人四大组成部分之间的控制关系.png){width="700"}
 </figure>
 
 ### 5.2.1 执行机构
@@ -1721,7 +1721,7 @@ vkrobot@vkrobot:~/catkin_ws/src$ touch learning_urdf/urdf/laser.urdf.xacro
 单目摄像头是将三维世界二维化，只能获取物体在摄像机成像平面上的投影，在静止状态下无法获取深度信息，也就无法根据物体的大小来判断距离。
 
 <figure markdown>
-![](http://www.autolabor.com.cn/book/ROSTutorials/assets/%E7%9B%B8%E6%9C%BA%E8%AF%B4%E6%98%8E.gif)
+![](http://www.autolabor.com.cn/book/ROSTutorials/.\assets/%E7%9B%B8%E6%9C%BA%E8%AF%B4%E6%98%8E.gif)
 </figure>
 
 2. **双目摄像头**
@@ -1729,7 +1729,7 @@ vkrobot@vkrobot:~/catkin_ws/src$ touch learning_urdf/urdf/laser.urdf.xacro
 双目摄像头顾名思义就是由两个单目相机组合而成的摄像头，可以通过两个单目相机之间存在的固定距离（基线）来估计摄像头与目标物体之间的距离。
 
 <figure markdown>
-![image-20230619160832049](assets\image-20230619160832049.png)
+![image-20230619160832049](.\assets\image-20230619160832049.png)
 </figure>
 
 3. **深度摄像头**
@@ -1796,7 +1796,7 @@ vkrobot@vkrobot:~/catkin_ws/src$ touch learning_urdf/urdf/laser.urdf.xacro
 `rostopic info /usb_cam/image_raw`
 
 <figure markdown>
-![image-20230626095356001](assets\image-20230626095356001.png){width="500"}
+![image-20230626095356001](.\assets\image-20230626095356001.png){width="500"}
 </figure>
 
 从终端打印的信息中可以得知，图像话题的消息类型是`sensor_msgs/Imgae`，这是ROS提供的一种摄像头原视图像的消息类型，使用以下命令查看该消息类型更详细的内容：
@@ -1804,7 +1804,7 @@ vkrobot@vkrobot:~/catkin_ws/src$ touch learning_urdf/urdf/laser.urdf.xacro
 `rosmsg show sensor_msgs/Image`
 
 <figure markdown>
-![image-20230626095435934](assets\image-20230626095435934.png){width="500"}
+![image-20230626095435934](.\assets\image-20230626095435934.png){width="500"}
 </figure>
 
 - header：消息头，包含图像的序列号、时间戳和绑定的坐标系
@@ -1820,7 +1820,7 @@ vkrobot@vkrobot:~/catkin_ws/src$ touch learning_urdf/urdf/laser.urdf.xacro
 `rosmsg show sensor_msgs/CompressedImage`
 
 <figure markdown>
-![image-20230626095519976](assets\image-20230626095519976.png){width="500"}
+![image-20230626095519976](.\assets\image-20230626095519976.png){width="500"}
 </figure>
 
 - header：消息头，包含图像的序列号、时间戳和绑定的坐标系
@@ -1842,7 +1842,7 @@ vkrobot@vkrobot:~/catkin_ws/src$ touch learning_urdf/urdf/laser.urdf.xacro
 标定需要用到如下图所示的棋盘格图案的标定板：
 
 <figure markdown>
-![](assets\image-20230626100512253.png){width="700"}
+![](.\assets\image-20230626100512253.png){width="700"}
 </figure>
 
 
@@ -1867,7 +1867,7 @@ vkrobot@vkrobot:~/catkin_ws/src$ touch learning_urdf/urdf/laser.urdf.xacro
 标定程序启动后，将标定板放置在摄像头视野范围内，画面如下图所示：
 
 <figure markdown>
-![image-20230626100915824](assets\image-20230626100915824.png){width="700"}
+![image-20230626100915824](.\assets\image-20230626100915824.png){width="700"}
 </figure>
 
 画面右上角的进图条表示了不同的标定进度：
@@ -1880,25 +1880,25 @@ vkrobot@vkrobot:~/catkin_ws/src$ touch learning_urdf/urdf/laser.urdf.xacro
 不断在摄像头视野中移动/转动标定板，直到“CALIBRATE”按钮激活，表示标定程序的参数采集完成。
 
 <figure markdown>
-![image-20230626101236288](assets\image-20230626101236288.png){width="700"}
+![image-20230626101236288](.\assets\image-20230626101236288.png){width="700"}
 </figure>
 
 点击“CALIBRATE”按钮，程序开始自动计算摄像头的标定参数，这个过程需要等待一段时间，此时界面会变成灰色无响应状态，注意观察终端会有标定结果的显示，并且标定界面的“SAVE”与“COMMIT”按钮激活，如下图：
 
 <figure markdown>
-![image-20230626102238430](assets\image-20230626102238430.png){width="700"}
+![image-20230626102238430](.\assets\image-20230626102238430.png){width="700"}
 </figure>
 
 点击“SAVE”按钮，标定参数将被保存到默认的文件夹下，在终端中可以看到此路径：
 
 <figure markdown>
-![image-20230626102322759](assets\image-20230626102322759.png){width="700"}
+![image-20230626102322759](.\assets\image-20230626102322759.png){width="700"}
 </figure>
 
 点击“COMMIT”按钮，提交数据并退出程序，然后招到标定结果的压缩文件`calibrationdata.tar.gz`，解压该文件后，找到`ost.yaml`命名的标定结果文件，将其复制出来备用
 
 <figure markdown>
-![image-20230626102654675](assets\image-20230626102654675.png){width="600"}
+![image-20230626102654675](.\assets\image-20230626102654675.png){width="600"}
 </figure>
 
 4.**加载**
@@ -1929,7 +1929,7 @@ vkrobot@vkrobot:~/catkin_ws/src$ touch learning_urdf/urdf/laser.urdf.xacro
 安装完成后，在目录：`/opt/ros/melodic/share/`中，可以找到此功能包。进入该功能包下的launch文件夹，可以看到多个launch文件，如下图所示。这些都是针对ROS官方的PR2机器人使用的二维码识别示例，后续我们将在这些文件的基础上进行修改，适配自己的机器人平台
 
 <figure markdown>
-![image-20230626105042494](assets\image-20230626105042494.png){width="600"}
+![image-20230626105042494](.\assets\image-20230626105042494.png){width="600"}
 </figure>
 
 
@@ -1945,7 +1945,7 @@ vkrobot@vkrobot:~/catkin_ws/src$ touch learning_urdf/urdf/laser.urdf.xacro
 
 `rosrun ar_track_alvar createMarker`
 
-![image-20230626110051776](assets\image-20230626110051776.png)
+![image-20230626110051776](.\assets\image-20230626110051776.png)
 
 从上图可以看出，此节点不仅能使用ID号生成二维码标签，还可以使用字符串、文件名、网址等，或是使用-s参数设置生成二维码的尺寸。
 
@@ -2037,7 +2037,7 @@ D为测量距离，c为恒定的光速，t为激光往返时间。脉冲式的�
 也称为间接式，将光源、被测物体、接收系统三点组成一个三角形光路，接收系统负责接收来自被测物体表面的散射光，并将其成像在光电探测器的敏感面上，通过光点在敏感面上的分布距离，从而计算出被测物体的距离，工作原理如下图：
 
 <figure markdown>
-![](assets\三角式激光雷达测距原理.png){width="700"}
+![](.\assets\三角式激光雷达测距原理.png){width="700"}
 </figure>
 
 
@@ -2050,7 +2050,7 @@ D为测量距离，c为恒定的光速，t为激光往返时间。脉冲式的�
 雷达通电后连接主机USB端口，并在虚拟机中做好相关设置。
 
 <figure markdown>
-![image-20230626155234607](assets\image-20230626155234607.png){width="700"}
+![image-20230626155234607](.\assets\image-20230626155234607.png){width="700"}
 </figure>
 
 2.确认当前USB端口并修改权限
@@ -2060,7 +2060,7 @@ D为测量距离，c为恒定的光速，t为激光往返时间。脉冲式的�
 `ll /dev/ttyUSB*`
 
 <figure markdown>
-![image-20230626155346561](assets\image-20230626155346561.png)
+![image-20230626155346561](.\assets\image-20230626155346561.png)
 </figure>
 
 为当前用户添加权限（将用户添加进dialout组）：
@@ -2068,7 +2068,7 @@ D为测量距离，c为恒定的光速，t为激光往返时间。脉冲式的�
 `sudo usermod -a -G dialout <your_user_name>`
 
 <figure markdown>
-![image-20230626155631338](assets\image-20230626155631338.png)
+![image-20230626155631338](.\assets\image-20230626155631338.png)
 </figure>
 
 > :warning:：重启虚拟机使之生效
@@ -2150,5 +2150,5 @@ vkrobot@vkrobot:~/ydlidar_ws$ sudo sh src/ydlidar_ros_driver/startup/initenv.sh
 
 
 <figure markdown>
-![image-20230626161108148](assets\image-20230626161108148.png){width="700"}
+![image-20230626161108148](.\assets\image-20230626161108148.png){width="700"}
 </figure>
